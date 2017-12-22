@@ -1,6 +1,7 @@
 <?php
-include 'loader.php';
+phpinfo();
+//include 'loader.php';
 
-spl_autoload_register('Loader::autoload');
+//spl_autoload_register('Loader::autoload');
 
-new \app\mvc\view\home\Index();
+//new \app\mvc\view\home\Index();
