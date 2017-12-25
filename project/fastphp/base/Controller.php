@@ -6,6 +6,7 @@
  * Time: 18:33
  */
 namespace fastphp\base;
+use fastphp\base;
 
 /**
  * 控制器基类
@@ -15,6 +16,7 @@ class Controller
     private $_controller;
     private $_action;
     private $_view;
+    protected $data=array();
 
     public function __construct($controller,$action)
     {
@@ -24,7 +26,7 @@ class Controller
     }
 
     /**
-     * 分配变量
+     * 单个分配变量
      *
      * @param $name
      * @param $value
@@ -34,9 +36,25 @@ class Controller
     }
 
     /**
-     * 渲染视图
+     * 多个变量分配
+     *
+     * @param array $data
      */
-    public function render(){
-        $this->_view->render();
+    public function assigns($data){
+        if(is_array($data)){
+            foreach($data as $name=>$value){
+                $this->assign($name,$value);
+            }
+        }
+    }
+
+    /**
+     * 渲染视图
+     *
+     * @param $layout
+     */
+    public function render($layout=''){
+        $layout=!empty($layout)?$layout:$this->_action;
+        $this->_view->render($layout);
     }
 }

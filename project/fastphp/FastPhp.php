@@ -160,13 +160,12 @@ class FastPhp
         $position = strpos($url, '?');
         $url = $position == false ? $url : substr($url, 0, $position);
         $url = trim($url, '/');
-
         if ($url) {
             //使用'/'分割字符串
             $urlArray = explode('/', $url);
             //过滤空元素
             $urlArray = array_filter($urlArray);
-            if (count($url) > 1) {
+            if (count($urlArray) > 1) {
                 //获取控制器名
                 $this->controllerName = ucfirst(array_shift($urlArray));
 
@@ -174,7 +173,7 @@ class FastPhp
                 $this->actionName = $urlArray ? array_shift($urlArray) : $this->actionName;
             } else {
                 $this->controllerName = $this->controllerName;
-                $this->actionName = array_shift($urlArray);
+                $this->actionName = 'index';
             }
 
 
@@ -188,7 +187,6 @@ class FastPhp
         if (!class_exists($controller)) {
             throw new \Exception(sprintf("%s控制器不存在", $controller));
         }
-
         if (!method_exists($controller, $this->actionName)) {
             throw new \Exception(sprintf("%s方法不存在", $this->actionName));
         }
