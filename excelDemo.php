@@ -28,28 +28,27 @@ $objPHPExcel->getProperties()->setCreator("作者简庆旺")
 
 
 //根据excel坐标，添加数据
-$objPHPExcel->setActiveSheetIndex(0)
-    ->setCellValue('A1', '你好')
-    ->setCellValue('B2', '世界')
-    ->setCellValue('C1', '你好')
-    ->setCellValue('D2', '世界');
+//$objPHPExcel->setActiveSheetIndex(0)
+//    ->setCellValue('A1', '你好')
+//    ->setCellValue('B2', '世界')
+//    ->setCellValue('C1', '你好')
+//    ->setCellValue('D2', '世界');
 
 // 混杂各种符号, 编码为UTF-8
-$objPHPExcel->setActiveSheetIndex(0)
-    ->setCellValue('A4', 'Miscellaneous glyphs')
-    ->setCellValue('A5', 'yzw');
+$objPHPExcel->setActiveSheetIndex(0)->mergeCells("A1:F1")
+    ->setCellValue('A1', 'Miscellaneous glyphs');
 
-
-$objPHPExcel->getActiveSheet()->setCellValue('A8',"你好世界");
-$objPHPExcel->getActiveSheet()->getRowDimension(8)->setRowHeight(-1);
-$objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setWrapText(true);
-
-
-$value = "-ValueA\n-Value B\n-Value C";
-$objPHPExcel->getActiveSheet()->setCellValue('A10', $value);
-$objPHPExcel->getActiveSheet()->getRowDimension(10)->setRowHeight(-1);
-$objPHPExcel->getActiveSheet()->getStyle('A10')->getAlignment()->setWrapText(true);
-$objPHPExcel->getActiveSheet()->getStyle('A10')->setQuotePrefix(true);
+//
+//$objPHPExcel->getActiveSheet()->setCellValue('A8',"你好世界");
+//$objPHPExcel->getActiveSheet()->getRowDimension(8)->setRowHeight(-1);
+//$objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setWrapText(true);
+//
+//
+//$value = "-ValueA\n-Value B\n-Value C";
+//$objPHPExcel->getActiveSheet()->setCellValue('A10', $value);
+//$objPHPExcel->getActiveSheet()->getRowDimension(10)->setRowHeight(-1);
+//$objPHPExcel->getActiveSheet()->getStyle('A10')->getAlignment()->setWrapText(true);
+//$objPHPExcel->getActiveSheet()->getStyle('A10')->setQuotePrefix(true);
 
 
 // 重命名工作sheet
@@ -60,9 +59,10 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // 保存Excel 2007格式文件，保存路径为当前路径，名字为export.xlsx
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-$objWriter->save( 'export.xlsx');
+$name=rand(1,1000000);
+$objWriter->save($name.'.xlsx');
 
 
 // 保存Excel 95格式文件，，保存路径为当前路径，
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-$objWriter->save('export.xls');
+$objWriter->save($name.'.xls');
