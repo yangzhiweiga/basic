@@ -94,6 +94,12 @@ class ExcelManage
     }
 
 
+    /**
+     * 设置标题
+     *
+     * @param $title
+     * @param $obj
+     */
     protected function setTitle($title,$obj){
         for($i=0;$i<count($title);$i++){
             $obj->setCellValue(sprintf("%s2",$this->charIndex[$i]),$title[$i]);
