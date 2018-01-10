@@ -29,6 +29,7 @@
             // 基于准备好的dom，初始化echarts图表
             var myChart = echarts.init(document.getElementById('main'));
 
+
             var option = {
                 title : {
                     text: '全局指标状态分布图',
