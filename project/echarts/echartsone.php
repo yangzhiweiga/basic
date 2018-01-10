@@ -58,8 +58,7 @@
                 "echarts.common.min.js": 6929,
                 "echarts.js": 14890
             };
-
-
+            
             var waterMarkText = 'ECHARTS';
 
             var canvas = document.createElement('canvas');
