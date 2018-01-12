@@ -59,7 +59,7 @@
                 "echarts.js": 14890
             };
 
-            
+
             var waterMarkText = 'ECHARTS';
 
             var canvas = document.createElement('canvas');
