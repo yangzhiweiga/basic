@@ -1,5 +1,4 @@
 <?php
-phpinfo();
 //include 'loader.php';
 
 //spl_autoload_register('Loader::autoload');

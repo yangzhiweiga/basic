@@ -5,7 +5,7 @@
  * Date: 2017/12/23
  * Time: 18:39
  */
-namespace fastphp\basic;
+namespace fastphp\base;
 
 /**
  * 视图基类
@@ -29,15 +29,20 @@ class View
         $this->variables[$name]=$value;
     }
 
-    public function render(){
+    /**
+     * @param string $layout
+     * @throws \Exception
+     */
+    public function render($layout=''){
         extract($this->variables);
         //默认页头和页脚文件
         $defaultHeader=APP_PATH.'app\views\header.php';
         $defaultFooter=APP_PATH.'app\views\footer.php';
         //自定义的页头和页脚文件
-        $controllerHeader=APP_PATH.'app\views\/'.$this->_controller.'/header.php';
-        $controllerFooter=APP_PATH.'app\views\/'.$this->_controller.'/footer.php';
-        $controllerLayout=APP_PATH.'app\views\/'.$this->_controller.'/layout.php';
+        $controllerHeader=APP_PATH.'app\views\/'.$this->setViewsDir().'/header.php';
+        $controllerFooter=APP_PATH.'app\views\/'.$this->setViewsDir().'/footer.php';
+        $layout=!empty($layout)?$layout:$this->_action;
+        $controllerLayout=APP_PATH.'app\views\/'.$this->setViewsDir().'/'.$layout.'.php';
 
         if(is_file($controllerHeader)){
             include ("$controllerHeader");
@@ -58,5 +63,11 @@ class View
             echo "<h1>无法找到视图文件</h1>";
         }
 
+    }
+
+    private function setViewsDir(){
+        $dir_name=explode('\\',trim($this->_controller,'\\'));
+        $dir_name=array_pop($dir_name);
+        return substr($dir_name,0,strpos($dir_name,'controller'));
     }
 }
