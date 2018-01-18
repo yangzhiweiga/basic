@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .class1{
+        background: #444;
+        color: #eee;
+    }
+</style>
+<body>
+<!--<div class="app">-->
+    <!--<p v-html="message"></p>-->
+<!--</div>-->
+<div class="app">
+    <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1': class1}">
+        directiva v-bind:class
+    </div>
+    <a href="javascript:void(0);" @click="fn($event)">submit</a>
+</div>
+
+<!--<script src="vue.min.js"></script>-->
+<script src="https://cdn.bootcss.com/vue/2.0.0-beta.4/vue.min.js"></script>
+<script src="demov.js"></script>
+<script>
+
+</script>
+</body>
+</html>
