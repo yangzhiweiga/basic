@@ -7,4 +7,6 @@
  */
 $date=date("Y-m-d H:i:s",strtotime("yesterday"));
 $date=date("Y-m-d H:i:s",strtotime("today"));
-print_r($date);
+$day = strtotime('00:00');
+print_r($day);
+print_r(date("Y-m-d H:i:s",$day));
